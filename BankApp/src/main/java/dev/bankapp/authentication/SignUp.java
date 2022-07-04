@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
-
 import dev.bankapp.utils.ConDAO;
+
 
 
 public class SignUp {
@@ -16,6 +16,7 @@ public class SignUp {
 	String password1;
 	java.sql.Statement statement = null;
 	ConDAO con = new ConDAO();
+
 
 	public boolean signUserUp(Scanner scan) {
 
@@ -28,8 +29,10 @@ public class SignUp {
 		password1 = scan.next();
 		System.out.println();
 
+
 		try {
 			Connection connection = con.getConnection();
+
 			PreparedStatement ps;
 			String sql = "select username from bankuser where username = "+"'"+username1+"'"+"; ";
 
