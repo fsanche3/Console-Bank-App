@@ -28,7 +28,6 @@ public class UserInput {
 		ConDAO con = new ConDAO();
 		int accId = -1;
 		switch(choice) {
-		 
 			case 1:
 				try {
 					connect = con.getConnection();

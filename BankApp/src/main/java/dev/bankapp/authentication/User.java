@@ -26,9 +26,6 @@ public class User {
 		return user.password;
 	}
 	
-	public int getUserId(User user) {
-		return user.accountNumber;
-	}
 	public void addToList(String string) {
 		checkTransactions.add(string);
 	}
