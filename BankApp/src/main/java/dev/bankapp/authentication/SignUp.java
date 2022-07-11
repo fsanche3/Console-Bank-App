@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
-import dev.bankapp.utils.ConDAO;
 
+import dev.bankapp.utils.ConDAO;
+import dev.bankapp.utils.Logger;
+import dev.bankapp.utils.LoggingLevels;
 
 
 public class SignUp {
@@ -16,7 +18,7 @@ public class SignUp {
 	String password1;
 	java.sql.Statement statement = null;
 	ConDAO con = new ConDAO();
-
+	Logger logger = Logger.getLogger();
 
 	public boolean signUserUp(Scanner scan) {
 
@@ -29,10 +31,8 @@ public class SignUp {
 		password1 = scan.next();
 		System.out.println();
 
-
 		try {
 			Connection connection = con.getConnection();
-
 			PreparedStatement ps;
 			String sql = "select username from bankuser where username = "+"'"+username1+"'"+"; ";
 
@@ -56,6 +56,7 @@ public class SignUp {
 
 
 			} else {
+				logger.log("User failed to sign up (Username already taken)", LoggingLevels.TRACE);
 				System.out.print("This Username is already being used!");
 				System.out.println();
 			}
@@ -63,7 +64,7 @@ public class SignUp {
 			connection.close();
 
 		} catch (SQLException e) {
-			System.out.print("DB Connection Error");
+			logger.log("DB Connection Error", LoggingLevels.ERROR);
 			e.printStackTrace();
 		}
 
